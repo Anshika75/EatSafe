@@ -6,7 +6,9 @@ function App() {
 
   return (
     <>
-      <Home/>
+      <div className="grid place-items-center">
+        <Home />
+      </div>
     </>
   )
 }
