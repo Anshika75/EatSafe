@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen max-w-[400px]">
         <p className='mulish text-sm text-[#80b3ba]'>Welcome To</p>
         <h1 className='titan-one text-[#2b7483] drop-shadow-md text-6xl'>EatSafe</h1>
         <p className='kanit text-[#193e4e] w-[90%] text-justify mt-4'>Easily scan the ingredient lists on food packages and instantly identify any harmful substances. Whether you're concerned about preservatives, artificial additives, or allergens, our app empowers you to make healthier and safer food choices.</p>
