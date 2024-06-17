@@ -45,7 +45,7 @@ export default function Home() {
       </p>
       {selectedImage && (
         <div className="w-[250px] h-[250px] bg-[#80b3ba] grid place-items-center my-6 relative">
-          <img src={selectedImage} alt="Selected" className='w-[90%] h-[90%] object-cover' />
+          <img src={selectedImage} alt="Selected" className='w-[90%] h-[90%] object-fit' />
           <i
             className="fa-solid fa-xmark text-white absolute top-1 right-1 bg-[#2b7483] p-1 rounded-full cursor-pointer"
             onClick={handleReset}
