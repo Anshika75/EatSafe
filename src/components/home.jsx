@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+
+import Tesseract from 'tesseract.js';
 
 export default function Home() {
   const fileInputRef = useRef(null);
@@ -17,10 +19,21 @@ export default function Home() {
       setDesc(null);
     }
   };
+  const [recognizedText, setRecognizedText] = useState('');
+  useEffect(() => {
+    const recognizeText = async () => {
+      if (selectedImage) {
+        const result = await Tesseract.recognize(selectedImage);
+        setRecognizedText(result.data.text);
+      }
+    };
+    recognizeText();
+  }, [selectedImage]);
 
   const handleReset = () => {
     setSelectedImage(null);
     setDesc('Easily scan the ingredient lists on food packages and instantly identify any harmful substances. Whether you are concerned about preservatives, artificial additives, or allergens, our app empowers you to make healthier and safer food choices.');
+    setRecognizedText('');
   };
 
   return (
@@ -33,7 +46,7 @@ export default function Home() {
       {selectedImage && (
         <div className="w-[250px] h-[250px] bg-[#80b3ba] grid place-items-center my-6 relative">
           <img src={selectedImage} alt="Selected" className='w-[90%] h-[90%] object-cover' />
-          <i 
+          <i
             className="fa-solid fa-xmark text-white absolute top-1 right-1 bg-[#2b7483] p-1 rounded-full cursor-pointer"
             onClick={handleReset}
           ></i>
@@ -52,6 +65,10 @@ export default function Home() {
         style={{ display: 'none' }}
         onChange={handleImageUpload}
       />
+      <div>
+      <h2>Recognized Text:</h2>
+      <p>{recognizedText}</p>
+    </div>
     </div>
   );
 }
