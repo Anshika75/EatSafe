@@ -6,7 +6,7 @@ export default function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [desc, setDesc] = useState('Easily scan the ingredient lists on food packages and instantly identify any harmful substances. Whether you are concerned about preservatives, artificial additives, or allergens, our app empowers you to make healthier and safer food choices.');
   const [recognizedText, setRecognizedText] = useState('');
-  const [apiResponse, setApiResponse] = useState('');
+  const [apiResponse, setApiResponse] = useState({});
 
   const handleUploadClick = () => {
     fileInputRef.current.click();
@@ -26,6 +26,23 @@ export default function Home() {
       if (selectedImage) {
         const result = await Tesseract.recognize(selectedImage);
         setRecognizedText(result.data.text);
+        if (result.data.text) {
+          try {
+            const response = await fetch('https://programmervisit.com/dev/api/check-food', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ rawData: result.data.text})
+            });
+            const data = await response.json();
+            console.log({data});
+            console.log(data.message);
+            setApiResponse(data);
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        }
       }
     };
     recognizeText();
@@ -35,25 +52,7 @@ export default function Home() {
     setSelectedImage(null);
     setDesc('Easily scan the ingredient lists on food packages and instantly identify any harmful substances. Whether you are concerned about preservatives, artificial additives, or allergens, our app empowers you to make healthier and safer food choices.');
     setRecognizedText('');
-    setApiResponse('');
-  };
-
-  const handleScanClick = async () => {
-    if (recognizedText) {
-      try {
-        const response = await fetch('https://programmervisit.com/dev/api/check-food', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ text: recognizedText })
-        });
-        const data = await response.json();
-        setApiResponse(data);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    }
+    setApiResponse({});
   };
 
   return (
@@ -73,7 +72,6 @@ export default function Home() {
         </div>
       )}
       <button
-        onClick={handleScanClick}
         className='mt-2 px-4 py-2 rounded-2xl bg-[#2b7483] w-[75%] text-center kanit text-white transition-all hover:opacity-75 cursor-pointer'
       >
         Scan
@@ -94,7 +92,15 @@ export default function Home() {
       </div>
       <div>
         <h2>API Response:</h2>
-        <p>{JSON.stringify(apiResponse)}</p>
+        {apiResponse.data ? (
+          <div>
+            {apiResponse.data.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
+          </div>
+        ) : (
+          <p>{apiResponse.message}</p>
+        )}
       </div>
     </div>
   );
