@@ -75,6 +75,7 @@ export default function Home() {
         className='mt-2 px-4 py-2 rounded-2xl bg-[#2b7483] w-[75%] text-center kanit text-white transition-all hover:opacity-75 cursor-pointer'
       >
         Scan
+        <input type="file" id="picture" name="picture" accept="image/*" capture="environment" />
       </button>
       <p className='kanit my-2'>or</p>
       <a onClick={handleUploadClick} className='kanit text-sm text-[#2b7483] underline cursor-pointer'>
