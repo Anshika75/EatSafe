@@ -121,19 +121,20 @@ export default function Home() {
         style={{ display: 'none' }}
         onChange={handleImageUpload}
       />
-      <div className='bg-white p-4 w-[80%] rounded flex flex-col justify-center relative shadow-md mt-6 pt-6'>
-        <h2 className='bg-[#2b7483] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 text-white py-1 rounded-full kanit'>Result:</h2>
-        {apiResponse.data ? (
-          <div>
-            {apiResponse.data.map((item, index) => (
-              <p className='mulish' key={index}>{item}</p>
-            ))}
-          </div>
-        ) : (
-          <p className='mulish'>{apiResponse.message}</p>
-        )}
-      </div>
-
+      {(recognizedText || apiResponse.data) && (
+        <div className='bg-white p-4 w-[80%] rounded flex flex-col justify-center relative shadow-md mt-6 pt-6'>
+          <h2 className='bg-[#2b7483] absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 text-white py-1 rounded-full kanit'>Result:</h2>
+          {apiResponse.data ? (
+            <div>
+              {apiResponse.data.map((item, index) => (
+                <p className='mulish' key={index}>{item}</p>
+              ))}
+            </div>
+          ) : (
+            <p className='mulish'>{apiResponse.message}</p>
+          )}
+        </div>
+      )}
       {isModalOpen && (
         <div className="absolute w-full min-h-full top-0 left-0 bg-black bg-opacity-50 flex items-start py-4 justify-center z-50">
           <div className="bg-white p-4 w-[80%] rounded flex flex-col justify-center relative shadow-md">
