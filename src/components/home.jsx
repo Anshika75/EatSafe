@@ -131,7 +131,7 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <p className='mulish'>{apiResponse.message}</p>
+            <p className='mulish text-center'>{apiResponse.message}</p>
           )}
         </div>
       )}
