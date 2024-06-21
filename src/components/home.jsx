@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-6 relative bg-white lg:min-h-[300px] w-full lg:max-w-[450px]">
+    <div className="flex flex-col items-center justify-center min-h-screen py-6 relative bg-white lg:min-h-[300px] rounded-lg shadow-sm w-full lg:max-w-[450px]">
       <p className='mulish text-sm text-[#80b3ba]'>Welcome To</p>
       <h1 className='titan-one text-[#2b7483] drop-shadow-md text-6xl'>EatSafe</h1>
       <p className='kanit text-[#193e4e] w-[90%] text-justify mt-4'>
@@ -94,7 +94,7 @@ export default function Home() {
       {!selectedImage && (
         <>
           <button
-            className='mt-2 px-4 py-2 rounded-2xl bg-[#2b7483] w-[75%] text-center kanit text-white transition-all hover:opacity-75 cursor-pointer'
+            className='mt-2 px-4 py-2 rounded-2xl bg-[#2b7483] w-[75%] text-center kanit text-white transition-all hover:opacity-75 cursor-pointer lg:hidden'
             onClick={handleUploadClick}
           >
             Scan
@@ -109,10 +109,26 @@ export default function Home() {
               onChange={handleImageUpload}
             />
           </button>
-          <p className='kanit my-2'>or</p>
-          <a onClick={handleUploadClick} className='kanit text-sm text-[#2b7483] underline cursor-pointer'>
+          <p className='kanit my-2 lg:hidden'>or</p>
+          <a onClick={handleUploadClick} className='kanit text-sm text-[#2b7483] underline cursor-pointer lg:hidden'>
             Upload
           </a>
+          <button
+            className='mt-4 px-4 py-2 rounded-2xl bg-[#2b7483] w-[75%] text-center kanit text-white transition-all hover:opacity-75 cursor-pointer hidden lg:block'
+            onClick={handleUploadClick}
+          >
+            Upload
+            <input
+              type="file"
+              id="picture"
+              name="picture"
+              accept="image/*"
+              capture="environment"
+              style={{ display: 'none' }}
+              ref={fileInputRef}
+              onChange={handleImageUpload}
+            />
+          </button>
         </>
       )}
       <input
