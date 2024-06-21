@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="grid place-items-center w-full bg-[#F0EEEE]">
+      <div className="grid place-items-center w-full min-h-screen bg-[#F0EEEE]">
         <Home />
       </div>
     </>
