@@ -67,7 +67,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-6 relative bg-[#F0EEEE] w-full">
+    <div className="flex flex-col items-center justify-center min-h-screen py-6 relative w-full lg:max-w-[450px]">
       <p className='mulish text-sm text-[#80b3ba]'>Welcome To</p>
       <h1 className='titan-one text-[#2b7483] drop-shadow-md text-6xl'>EatSafe</h1>
       <p className='kanit text-[#193e4e] w-[90%] text-justify mt-4'>
