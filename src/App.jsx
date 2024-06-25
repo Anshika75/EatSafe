@@ -8,7 +8,8 @@ function App() {
   return (
     <>
       <div className="grid place-items-center w-full min-h-screen bg-[#F0EEEE]">
-        <Nutrition/>
+        {/* <Nutrition/> */}
+        <Home/>
       </div>
     </>
   )
