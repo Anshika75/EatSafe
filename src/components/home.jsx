@@ -1,7 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Tesseract from 'tesseract.js';
 
+
 export default function Home() {
+
   const fileInputRef = useRef(null);
   const [selectedImage, setSelectedImage] = useState(null);
   const [desc, setDesc] = useState('Easily scan the ingredient lists on food packages and instantly identify any harmful substances. Whether you are concerned about preservatives, artificial additives, or allergens, our app empowers you to make healthier and safer food choices.');
@@ -81,6 +83,8 @@ export default function Home() {
             className='h-[240px] w-[240px] object-cover cursor-pointer'
             onClick={() => openModal(<img src={selectedImage} alt="Full Size" className="w-full" />)}
           />
+
+
           <i
             className="fa-solid fa-xmark text-white absolute top-1 right-1 bg-[#2b7483] p-1 rounded-full cursor-pointer"
             onClick={handleReset}
